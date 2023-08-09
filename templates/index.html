@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Order Placement</title>
+</head>
+<body>
+    <button id="buyButton">Buy</button>
+    <script>
+        const apiKey = 'b7gsr62trc3vytqj';
+        const accessToken = 'SdtP3DLysoZEJ0VxbKRNJbibXS95ZMwv';
+
+        // Function to place a market buy order
+        function placeMarketBuyOrder() {
+            const orderParams = {
+                exchange: 'NSE',
+                tradingsymbol: 'Infy',
+                quantity: 1,
+                transaction_type: 'BUY',
+                order_type: 'MARKET'
+            };
+
+            // Call Zerodha Connect API to place the order
+            ZerodhaConnect.placeOrder(apiKey, accessToken, orderParams)
+                .then(response => {
+                    console.log('Order placed successfully:', response);
+                })
+                .catch(error => {
+                    console.error('Error placing order:', error);
+                });
+        }
+
+        // Attach click event handler to the "Buy" button
+        document.getElementById('buyButton').addEventListener('click', placeMarketBuyOrder);
+    </script>
+</body>
+</html>
